@@ -79,7 +79,7 @@
                         {{-- mengirim variable name sebagai variable static dari component dan variable active sebagai variable active dari controller --}}
                         <x-menu :active=$active />
                     </div>
-                    <div class="col-md-10 main-content">
+                    <div class="col-md-10 main-content p-5">
                         @yield('content')
                     </div>
                 </div>

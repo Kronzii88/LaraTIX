@@ -22,4 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // dashboard
-Route::get('/dashboard', 'dashboard\DashboardController@index');
+Route::get('/dashboard', 'Dashboard\DashboardController@index');
+Route::get('/dashboard/users', 'Dashboard\UserController@index');
