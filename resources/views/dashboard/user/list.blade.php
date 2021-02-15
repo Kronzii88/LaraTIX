@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="card-body p-0">
-        <table class="table">
+        <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>
@@ -21,17 +21,20 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($users as $user)
                 <tr>
-                    @foreach($users as $user)
-                    <td>1</td>
+                    {{-- loop iteration untuk penomoran 1,2,3,dst --}}
+                    <td>{{($users->currentPage() - 1) * $users->perPage() + $loop->iteration}}</td>
                     <td>{{$user -> name}}</td>
                     <td>{{$user -> email}}</td>
                     <td>{{$user -> created_at}}</td>
                     <td>{{$user -> updated_at}}</td>
-                    @endforeach
                 </tr>
+                @endforeach
             </tbody>
         </table>
+        {{-- syntax blade untuk pagination (sudah dibuat di UserController pagination ada 10) --}}
+        {{$users -> links()}}
     </div>
 </div>
 
