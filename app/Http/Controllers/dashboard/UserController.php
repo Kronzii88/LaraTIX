@@ -13,10 +13,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $users)
+    public function index(Request $request, User $users)
     {
+        // fitur search
+
+        $nama = $request->input('nama');
         $active = 'Users';
-        $users = $users->paginate(10);
+        $users = $users -> when($nama, function($query) use ($nama) {
+            return $query -> where('name', 'like', '%'.$nama.'%');
+        })
+                        ->paginate(10);
         return view('dashboard/user/list', ['users' => $users, 'active' => $active]);
     }
 
