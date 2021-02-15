@@ -23,7 +23,13 @@ class UserController extends Controller
             return $query -> where('name', 'like', '%'.$nama.'%');
         })
                         ->paginate(10);
-        return view('dashboard/user/list', ['users' => $users, 'active' => $active]);
+        
+        //variabel request disini hanya berisi dua array yaitu 'nama' dan 'page' (coba di dd($request))
+        $request = $request -> all();
+        return view('dashboard/user/list', ['users' => $users, 
+                                            'active' => $active,
+                                            'request' => $request,
+                                            ]);
     }
 
     /**

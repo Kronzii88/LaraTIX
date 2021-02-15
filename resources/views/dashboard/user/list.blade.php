@@ -42,7 +42,7 @@
             </tbody>
         </table>
         {{-- syntax blade untuk pagination (sudah dibuat di UserController pagination ada 10) --}}
-        {{$users -> links()}}
+        {{$users -> appends($request) -> links()}}
     </div>
 </div>
 
