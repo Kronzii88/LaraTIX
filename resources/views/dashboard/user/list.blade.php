@@ -10,7 +10,7 @@
             <div class="col-4">
                 <form action={{url('dashboard/users')}} method=get>
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search" name="nama">
+                        <input class="form-control" type="search" placeholder="Search" name="nama" value={{$request['nama'] ?? ''}}>
                         <button class="btn btn-outline-success sm" type="submit">Search</button>
                     </div>
                 </form>
