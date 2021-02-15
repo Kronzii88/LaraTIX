@@ -10,6 +10,7 @@
             <div class="col-4">
                 <form action={{url('dashboard/users')}} method=get>
                     <div class="input-group">
+                        {{-- pada atribut value terdapat operator null coalescing/ternary yang hanya ada pada php7 --}}
                         <input class="form-control" type="search" placeholder="Search" name="nama" value={{$request['nama'] ?? ''}}>
                         <button class="btn btn-outline-success sm" type="submit">Search</button>
                     </div>
@@ -26,6 +27,8 @@
                     <th>Email</th>
                     <th>Registered</th>
                     <th>Edited</th>
+                    {{-- nilai kosong pada tabel --}}
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +40,7 @@
                     <td>{{$user -> email}}</td>
                     <td>{{$user -> created_at}}</td>
                     <td>{{$user -> updated_at}}</td>
+                    <td> <a href="{{ url('dashboard/user/edit/'.$user->id)}}" class="btn btn-success btn-sm">Edit</a> </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -72,7 +72,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $active = 'Users';
+        return view('dashboard/user/form', ['user' => $user,
+                                            'active' => $active]);
     }
 
     /**
@@ -84,7 +87,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+       
+        $user -> name = $request->input('name');
+        $user -> email = $request->input('email');
+        //save database
+        $user -> save();
+        return redirect('dashboard/users');
+
     }
 
     /**
