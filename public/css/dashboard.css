@@ -44,3 +44,13 @@ h6 {
   align-items: center;
 }
 
+table.table tr td {
+  font-size: 0.9em;
+  vertical-align: middle;
+}
+
+.form-group label {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+

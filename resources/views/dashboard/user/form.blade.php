@@ -4,15 +4,17 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-8">
+            <div class="col-8 align-self-center">
                 <h3>Form User</h3>
             </div>
             <div class="col-4 text-right">
-                <button class="btn text-secondary btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                <button class="btn text-secondary btn-sm" data-toggle="modal" data-target="#deleteModal">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
             </div>
         </div>
     </div>
-    <div class="card-body p-0">
+    <div class="card-body">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <form method="post" action="{{url('dashboard/user/update/'.$user->id)}}">
@@ -32,8 +34,10 @@
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-0">
+                        <button type="button" onclick="window.history.back()" class="btn btn-secondary">Cancel</button>
                         <button type="submit" class="btn btn-primary">Update</button>
+
                     </div>
                 </form>
             </div>
