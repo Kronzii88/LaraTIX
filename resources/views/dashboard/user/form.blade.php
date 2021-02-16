@@ -17,10 +17,16 @@
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control" name="name" value="{{$user -> name}}">
+                        @error('name')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" name="email" value="{{$user -> email}}">
+                        @error('email')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Update</button>

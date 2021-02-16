@@ -1,0 +1,7 @@
+Seeder
+membuat data dummy untuk melihat tampilan UInya
+contoh: User untuk membuat data dummy menggunakan UserFactory dimana didalamnya terdapat library faker untuk nilai-nilai data dummy. untuk menjalankan seeder menggunakan
+php artisan db:seed --class=NamaSeeder
+
+fitur search
+search menggunakan form dengan method get di UI lalu pada controller ambil requestnya dan cocokkan dengan database menggunakan query. 

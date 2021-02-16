@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Validator;
 
 class UserController extends Controller
 {
@@ -88,12 +89,27 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-       
-        $user -> name = $request->input('name');
-        $user -> email = $request->input('email');
-        //save database
-        $user -> save();
-        return redirect('dashboard/users');
+        
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|unique:App\Models\User,email,'.$id,
+            'name' => 'required'
+        ]);
+
+        if($validator -> fails()) {
+            //withInput mengambil dari input terakhir yang di masukkan user
+            return redirect('dashboard/user/edit/'.$id) 
+                -> withErrors($validator)
+                -> withInput();
+        } else {
+            
+            $user -> name = $request->input('name');
+            $user -> email = $request->input('email');
+            //save database
+            $user -> save();
+            return redirect('dashboard/users');
+        }
+
+            
 
     }
 
