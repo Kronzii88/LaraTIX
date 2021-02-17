@@ -23,7 +23,10 @@ Auth::routes();
 //middleware('auth') digunakan untuk autentifikasi apakah sudah login, jika belum maka tidak bisa mengakses url dan dipindahkan ke halaman login. middleware bisa diinput dalam controller maupun ke routing. di routing kamu juga bisa melakukan grouping untuk halaman yang harus masuk autentifikasi ataupun tidak
 Route::middleware('auth')->group(function() {
     
-    Route::get('/dashboard', 'Dashboard\DashboardController@index');
+    Route::get('/dashboard', 'Dashboard\DashboardController@index') -> name('dashboard');
+    Route::get('/dashboard/movies', 'Dashboard\MoviesController@index') -> name('dashboard.movies');
+    Route::get('/dashboard/theaters', 'Dashboard\TheatersController@index') -> name('dashboard.theaters');
+    Route::get('/dashboard/tickets', 'Dashboard\TicketsController@index') -> name('dashboard.tickets');
     
     // users
     Route::get('/dashboard/users', 'Dashboard\UserController@index') -> name('dashboard.users');
