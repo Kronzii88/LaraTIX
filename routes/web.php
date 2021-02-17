@@ -20,11 +20,15 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
+//middleware('auth') digunakan untuk autentifikasi apakah sudah login, jika belum maka tidak bisa mengakses url dan dipindahkan ke halaman login. middleware bisa diinput dalam controller maupun ke routing. di routing kamu juga bisa melakukan grouping untuk halaman yang harus masuk autentifikasi ataupun tidak
+Route::middleware('auth')->group(function() {
+    
+    Route::get('/dashboard', 'Dashboard\DashboardController@index');
+    
+    // users
+    Route::get('/dashboard/users', 'Dashboard\UserController@index') -> name('dashboard.users');
+    Route::get('/dashboard/users/{id}', 'Dashboard\UserController@edit') -> name('dashboard.user.edit');
+    Route::patch('/dashboard/users/{id}', 'Dashboard\UserController@update') -> name('dashboard.user.update');
+    Route::delete('/dashboard/users/{id}', 'Dashboard\UserController@destroy') -> name('dashboard.user.delete');
 
-Route::get('/dashboard', 'Dashboard\DashboardController@index');
-
-// users
-Route::get('/dashboard/users', 'Dashboard\UserController@index') -> name('dashboard.users');
-Route::get('/dashboard/users/{id}', 'Dashboard\UserController@edit') -> name('dashboard.user.edit');
-Route::patch('/dashboard/users/{id}', 'Dashboard\UserController@update') -> name('dashboard.user.update');
-Route::delete('/dashboard/users/{id}', 'Dashboard\UserController@destroy') -> name('dashboard.user.delete');
+});
