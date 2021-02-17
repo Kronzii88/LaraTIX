@@ -8,11 +8,11 @@
                 <h3>Users</h3>
             </div>
             <div class="col-4">
-                <form action={{url('dashboard/users')}} method=get>
+                <form action={{route('dashboard.users')}} method=get>
                     <div class="input-group">
                         {{-- pada atribut value terdapat operator null coalescing/ternary yang hanya ada pada php7 --}}
                         <input class="form-control" type="search" placeholder="Search" name="nama" value={{$request['nama'] ?? ''}}>
-                        <button class="btn btn-outline-success sm" type="submit">Search</button>
+                        <button class="btn btn-outline-success sm" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
             </div>
@@ -41,8 +41,8 @@
                     <td>{{$user -> created_at}}</td>
                     <td>{{$user -> updated_at}}</td>
                     <td> 
-                        <a href="{{ url('dashboard/user/edit/'.$user->id)}}" class="btn btn-success btn-sm"> 
-                            <i class="fas fa-pen"></i> Edit
+                        <a href="{{ route('dashboard.user.edit', ['id' => $user->id])}}" class="btn btn-success btn-sm"> 
+                            <i class="fas fa-pen"></i>
                         </a> 
                     </td>
                 </tr>
