@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//ini digunakan untuk login, registrasi, reset (bawaan dari laravel auth)
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
