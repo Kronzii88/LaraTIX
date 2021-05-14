@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class MoviesController extends Controller
 {
@@ -24,7 +26,8 @@ class MoviesController extends Controller
         
         //variabel request disini hanya berisi dua array yaitu 'nama' dan 'page' (coba di dd($request))
         $request = $request -> all();
-        return view('dashboard/movie/list', ['movies' => $movies, 
+        return view('dashboard/movie/list', [
+                                            'movies' => $movies, 
                                             'active' => $active,
                                             'request' => $request,
                                             ]);
@@ -37,7 +40,10 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        //
+        $active = 'Movies';
+        return view('dashboard/movie/form', [
+            'active' => $active
+        ]);
     }
 
     /**
@@ -46,9 +52,30 @@ class MoviesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Movie $movie)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'title' => 'required|unique:App\Models\Movie,title',
+            'description' => 'required',
+            'thumbnail' => 'required|image'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('dashboard.movies.create')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $image = $request -> file('thumbnail');
+            $filename = time(). '.'. $image->getClientOriginalExtension();
+            Storage::disk('local')->putFileAs('public/movies', $image, $filename); 
+            
+            $movie->title = $request->title;
+            $movie->description = $request->description;
+            $movie->thumbnail = $filename;
+            $movie->save();
+            return redirect ('/dashboard/movies');
+        }
     }
 
     /**
