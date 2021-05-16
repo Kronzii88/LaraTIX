@@ -39,9 +39,11 @@
                         {{-- loop iteration untuk penomoran 1,2,3,dst --}}
                         <th scope="row">{{($movies->currentPage() - 1) * $movies->perPage() + $loop->iteration}}</th>
                         <td>{{$movie->title}}</td>
-                        <td>{{$movie->thumbnail}}</td>
+                        <td>
+                            <img src="{{asset('storage/movies/'. $movie->thumbnail)}}">
+                        </td>
                         <td> 
-                            <a href="#" class="btn btn-success btn-sm"> 
+                            <a href="{{route('dashboard.movies.edit', $movie->id)}}" class="btn btn-success btn-sm"> 
                                 <i class="fas fa-pen"></i>
                             </a> 
                         </td>

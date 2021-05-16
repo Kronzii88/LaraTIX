@@ -97,7 +97,12 @@ class MoviesController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+        $active = 'Movies';
+        // dd($movie);
+        return view('dashboard/movie/form', [
+            'active' => $active,
+            'movie' => $movie
+        ]);
     }
 
     /**
