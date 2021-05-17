@@ -54,3 +54,7 @@ table.table tr td {
   font-weight: bold;
 }
 
+.col-thumbnail {
+  max-width: 70px;
+}
+

@@ -26,9 +26,8 @@
             <table class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>#</th>
-                        <th>title</th>
                         <th>thumbnail</th>
+                        <th>title</th>
                         {{-- nilai kosong pada tabel --}}
                         <th>&nbsp;</th>
                     </tr>
@@ -37,11 +36,10 @@
                     @foreach($movies as $movie)
                     <tr>
                         {{-- loop iteration untuk penomoran 1,2,3,dst --}}
-                        <th scope="row">{{($movies->currentPage() - 1) * $movies->perPage() + $loop->iteration}}</th>
-                        <td>{{$movie->title}}</td>
-                        <td>
-                            <img src="{{asset('storage/movies/'. $movie->thumbnail)}}">
+                        <td class="col-thumbnail">
+                            <img src="{{asset('storage/movies/'. $movie->thumbnail)}}" class="img-thumbnail">
                         </td>
+                        <td><h4><strong>{{$movie->title}}</strong></h4></td>
                         <td> 
                             <a href="{{route('dashboard.movies.edit', $movie->id)}}" class="btn btn-success btn-sm"> 
                                 <i class="fas fa-pen"></i>

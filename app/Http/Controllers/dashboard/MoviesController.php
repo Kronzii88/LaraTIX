@@ -101,7 +101,9 @@ class MoviesController extends Controller
         // dd($movie);
         return view('dashboard/movie/form', [
             'active' => $active,
-            'movie' => $movie
+            'movie' => $movie,
+            'button' => 'Update',
+            'url' => 'dashboard.movies.update'
         ]);
     }
 
